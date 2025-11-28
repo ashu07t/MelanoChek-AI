@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Skin Cancer Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-microscope"></i> MelanoCheck AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#detection">Detection</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#info">Information</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        AI-Powered Skin Cancer Detection
+                    </h1>
+                    <p class="lead text-white mb-4">
+                        Early detection saves lives. Upload your skin lesion image and get instant AI analysis using advanced deep learning technology.
+                    </p>
+                    <a href="#detection" class="btn btn-light btn-lg me-3">Start Detection</a>
+                    <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-user-md hero-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">About Our AI System</h2>
+                    <p class="lead">Advanced ensemble model combining ResNet and VGG architectures</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                        <h4>Deep Learning</h4>
+                        <p>Utilizes state-of-the-art CNN architectures trained on HAM10000 dataset with over 10,000 dermoscopic images.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                        <h4>Real-time Analysis</h4>
+                        <p>Get instant results within seconds of uploading your image with high accuracy ensemble predictions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h4>Clinical Support</h4>
+                        <p>Designed to assist healthcare professionals and provide accessible screening in underserved regions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detection Section -->
+    <section id="detection" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Skin Lesion Analysis</h2>
+                    <p class="lead">Upload an image for AI-powered skin cancer detection</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h3 class="section-title text-center mb-4">Patient Information</h3>
+            
+            <!-- Patient Form -->
+            <form id="patientForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="patientName" class="form-label">Patient Name *</label>
+                        <input type="text" class="form-control" id="patientName" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="patientAge" class="form-label">Age *</label>
+                        <input type="number" class="form-control" id="patientAge" min="1" max="120" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="patientGender" class="form-label">Gender *</label>
+                        <select class="form-control" id="patientGender" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Camera Controls -->
+            <div class="text-center my-4">
+                <button id="startCameraBtn" class="btn btn-primary btn-lg me-2">
+                    <i class="fas fa-camera"></i> Start Camera
+                </button>
+                <button id="capturePhotoBtn" class="btn btn-success btn-lg me-2" style="display:none;">
+                    <i class="fas fa-camera-retro"></i> Capture Photo
+                </button>
+                <button id="stopCameraBtn" class="btn btn-danger btn-lg" style="display:none;">
+                    <i class="fas fa-stop"></i> Stop Camera
+                </button>
+            </div>
+
+            <!-- Camera Preview -->
+            <div id="cameraContainer" style="display:none;" class="text-center mb-4">
+                <video id="cameraVideo" width="640" height="480" autoplay playsinline class="border rounded"></video>
+                <canvas id="captureCanvas" style="display:none;"></canvas>
+            </div>
+
+                    <div class="upload-section">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt fa-4x text-muted mb-3"></i>
+                                <h4>Drop your image here or click to browse</h4>
+                                <p class="text-muted">Supports: PNG, JPG, JPEG, BMP, TIFF (Max: 16MB)</p>
+                                <input type="file" id="imageInput" name="file" accept="image/*" class="d-none">
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('imageInput').click()">
+                                    Choose File
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Loading Indicator -->
+                        <div id="loadingIndicator" class="text-center mt-4" style="display: none;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Analyzing image...</p>
+                        </div>
+                        
+                        <!-- Results Section -->
+                        <div id="resultsSection" class="mt-4" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="uploaded-image-container">
+                                        <img id="uploadedImage" class="img-fluid rounded" alt="Uploaded Image">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="results-card">
+                                        <h4>Analysis Results</h4>
+                                        <div class="result-item">
+                                            <strong>Predicted Condition:</strong>
+                                            <span id="predictedClass" class="ms-2"></span>
+                                        </div>
+                                        <div class="result-item">
+                                            <strong>Confidence:</strong>
+                                            <span id="confidence" class="ms-2"></span>
+                                        </div>
+                                        <div class="result-item">
+                                            <strong>Risk Level:</strong>
+                                            <span id="riskLevel" class="ms-2"></span>
+                                        </div>
+                                        <div class="mt-3">
+                                            <h6>Detailed Probabilities:</h6>
+                                            <div id="probabilityChart"></div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="alert alert-warning">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                                <strong>Disclaimer:</strong> This is not a medical diagnosis. Please consult a healthcare professional for proper medical evaluation.
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-4">
+        <button id="downloadReportBtn" class="btn btn-success btn-lg">
+            <i class="fas fa-download"></i> Download Medical Report
+        </button>
+    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section id="info" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Skin Cancer Types</h2>
+                    <p class="lead">Learn about different types of skin lesions our AI can detect</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="info-card">
+                        <h5 class="text-danger">High Risk Conditions</h5>
+                        <ul>
+                            <li><strong>Melanoma (mel):</strong> Most dangerous form of skin cancer</li>
+                            <li><strong>Basal Cell Carcinoma (bcc):</strong> Most common skin cancer</li>
+                            <li><strong>Acticin Keratosis (akiec):</strong> Most common skin cancer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="info-card">
+                        <h5 class="text-success">Lower Risk Conditions</h5>
+                        <ul>
+                            <li><strong>Melanocytic Nevi (nv):</strong> Common moles</li>
+                            <li><strong>Benign Keratosis (bkl):</strong> Non-cancerous growths</li>
+                            <li><strong>Dermatofibroma (df):</strong> Benign skin tumors</li>
+                            <li><strong>Vascular lesions (vasc):</strong>Non-cancerous growths</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 MelanoCheck AI. Developed for early skin cancer detection.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Project by: Aditya Bondre, Akshay Patil, Ashitosh Thorat</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
