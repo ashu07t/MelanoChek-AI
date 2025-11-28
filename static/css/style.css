@@ -1,0 +1,218 @@
+/* Custom CSS for Skin Cancer Detection App */
+
+:root {
+    --primary-color: #2c5aa0;
+    --secondary-color: #f8f9fa;
+    --accent-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e3c72 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-icon {
+    font-size: 12rem;
+    color: rgba(255, 255, 255, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Section Titles */
+.section-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Feature Cards */
+.feature-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Upload Section */
+.upload-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.upload-area {
+    border: 3px dashed var(--primary-color);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.upload-area.dragover {
+    border-color: var(--accent-color);
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Uploaded Image */
+.uploaded-image-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.uploaded-image-container img {
+    max-height: 300px;
+    border: 2px solid #dee2e6;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+/* Camera and Form Styles */
+.form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#cameraVideo {
+    max-width: 100%;
+    background: #000;
+}
+
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-lg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#downloadReportBtn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* Results Card */
+.results-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.result-item {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+/* Probability Chart */
+#probabilityChart {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.probability-bar {
+    margin-bottom: 0.5rem;
+}
+
+.probability-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Info Cards */
+.info-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-card li:last-child {
+    border-bottom: none;
+}
+
+/* Risk Level Colors */
+.risk-high { color: var(--danger-color) !important; font-weight: bold; }
+.risk-medium { color: var(--warning-color) !important; font-weight: bold; }
+.risk-low { color: var(--accent-color) !important; font-weight: bold; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-icon { font-size: 6rem; }
+    .upload-area { padding: 2rem 1rem; }
+    .results-card { margin-top: 2rem; }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Navigation Styles */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
